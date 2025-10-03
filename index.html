@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SkyLine - An Ingenious Weather Dashboard</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="/assets/icon2/favicon.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+              integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+              crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    </head>
+
+
+    <body>
+        <header>
+            <h1>Welcome to SkyLine - An Ingenious Weather Dashboard</h1>
+            <div class="header-controls">
+                <nav>
+                    <a href="#current-weather">Current Location Weather</a>
+                    <a href="#search-weather">Search Weather Conditions by City</a>
+                    <a href="#forecast">Forecast for Upcoming days</a>
+                    <a href="#map">Weather Map</a>
+                </nav>
+            <button id="dark-mode-toggle">🌙 Dark Mode</button>
+            </div>
+        </header>
+
+        <main>
+            <!--DASHBOARD-->
+            <!-- Current Location Weather Section-->
+            <section id="current-weather">
+                <h2>Weather Conditions at Present Location</h2>
+                <div id="weather-info">Loading...</div>
+            </section>
+
+            <!-- Search Weather by City Section -->
+            <section id="search-weather" role="search">
+                <h2>Search for Weather Conditions by City Name</h2>
+                <input type="text" id="city-input" placeholder="Enter city">
+                <button id="search-btn">Search</button>
+                <div id="search-result"></div>
+            </section>
+
+             <!-- Forecast Section -->
+            <section id="forecast">
+                <h2>Weather Forecast for Upcoming Days</h2>
+                <div id="forecast-cards"></div>
+            </section>
+
+            <!--WEATHER MAP-->
+            <section id="map">
+                <h2>Weather Overlay Map</h2>
+                <div id="mapId">Map loading...</div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 SkyLine - Powered by OpenWeatherMap API. All rights reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Author: Kajol B</p>
+            <p style="font-style: italic; font-size: small;">Photo Credits: 
+                Photo by- Nothing Ahead <a href="https://www.pexels.com/photo/a-clouds-in-the-sky-7918884/">Clouds-BKG Image(Canva)</a>, &nbsp;
+                Photo by- Damian Markutt <a href="https://unsplash.com/photos/mountain-top-under-sunset-8uXthE3xeBI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Image1(Unsplash)</a>, &nbsp;
+                Photo by- Anonymous <a href="https://i.pinimg.com/736x/63/41/fb/6341fb72e59efe654cf0529263426899.jpg">Image2(Pinterest)</a>
+            </p>
+        </footer>
+    </body>
+</html>

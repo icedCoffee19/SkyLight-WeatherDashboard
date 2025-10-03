@@ -1,0 +1,389 @@
+/* ========== RESET DEFAULT STYLES========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========== CSS VARIABLES (defining custom properties for styling) ========== */
+:root {
+  /* Theme Colors */
+  --primary-color: #7cdbf8c2; /* blue */
+  --secondary-color: #142ef6; /* slightly darker blue for gradients/borders */
+  --text-color-light: #fff;
+  --text-color-dark: #222;
+  
+  /* Backgrounds */
+  --background-light-center: #daf0f7; /* for radial gradient center */
+  --background-light-middle: #f8e3ab; /* for radial gradient middle */
+  --background-light-edge: #f0a593;   /* for radial gradient edge */
+  --background-card: #fff;
+  --background-card-secondary: #f1f1f1;
+  
+  /* Header Specific */
+  --header-bg-image: url('assets/bkg7.jpg'); /* placeholder for your background image */ 
+  
+  /* Shadow */
+  --shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  /* Gradient Colors for Element backgrounds*/
+  --pastel-gradient-start: #e0f7fa; /* Light cyan */
+  --pastel-gradient-end: #b3e5fc;   /* Light blue */
+  --pastel-gradient-start-search: #fff8e1; /* Light yellow */
+  --pastel-gradient-end-search: #ffecb3;   /* Light gold */
+  
+  /* Dark Mode Gradient Colors */
+  --dark-pastel-start: #37474f; /* Dark slate */
+  --dark-pastel-end: #263238;   /* Darker slate */
+}
+
+/* ========== BASE STYLES (for body, main sections & headings)========== */
+body {
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top left, var(--background-light-center) 0%, var(--background-light-middle) 50%, var(--background-light-edge) 100%);
+  color: var(--text-color-dark);
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  padding: 10px; 
+}
+
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+}
+h2, h3 {
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+}
+
+/* Container Spacing (for the main section) */
+main {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px 0;
+}
+
+/* ========== HEADER STYLES ========== */
+header {
+  /* Background (Background Image, Opacity and Cover, Rounded Borders)*/
+  background-image: var(--header-bg-image);
+  background-size: cover; /* ensures the image covers the entire header */
+  background-position: center; /* centers the image */
+  position: relative; /* needed for the overlay pseudo-element */
+  border-radius: 10px; 
+  
+  color: var(--text-color-light);
+  
+  /* Padding and Border (for isolation form the main section) */
+  padding: 20px; 
+  border-bottom: 5px;
+  
+  /* Flexbox settings for Header section Layout (Title on top, Nav & Toggle Button below) */
+  display: flex;
+  flex-direction: column; /* stacks items vertically: H1, then the Wrapper */
+  align-items: center; /* center the title */
+  overflow: hidden; /* ensures background image stays within rounded corners */
+}
+
+/* Pseudo-element for a semi-transparent overlay on the BKG Image */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* semi-transparent blue overlay for better text readability */
+    background: rgba(164, 204, 250, 0.1); 
+    z-index: 1; /* place below text content */
+}
+/* Push header content above the overlay */
+header h1, .header-controls {
+    position: relative;
+    z-index: 2; /* place content above the overlay */
+}
+
+/* Styling the div container holding Nav and Toggle Button*/
+.header-controls {
+    display: flex;
+    justify-content: space-between; /* puts Nav left, toggle button right */
+    align-items: center;
+    width: 100%; /* spans the full width of the header */
+    margin-top: 15px; /* spacing between title and controls */
+    flex-wrap: wrap; /* allows wrapping on small screens */
+}
+
+/* Website Title (main heading) Styling */
+header h1 {
+  font-size: 2rem;
+  color:#022d69;
+  margin: 0;
+}
+
+/* Navigation Section Styling (styling the navigation links as buttons)*/
+nav {
+    display: flex; /* makes navigation links sit side-by-side */
+    flex-wrap: wrap;
+    gap: 10px; /* space between the "buttons" */
+}
+
+nav a {                             
+  /* removed default styles */
+  text-decoration: none;
+  font-weight: bold;
+  
+  /* button styling */
+  background: rgba(255, 255, 255, 0.2); /* semi-transparent background */
+  color: #022d69;
+  border: 1px solid var(--text-color-light);
+  padding: 8px 15px;
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.4); /* darker on hover */
+  /*text-decoration: none; /* removed underline on hover */
+}
+
+/* Dark mode Toggle Button Styling */
+#dark-mode-toggle {
+  background: var(--background-card);
+  color: var(--primary-color);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+#dark-mode-toggle:hover {
+  background: var(--text-color-dark);
+  color: var(--text-color-light);
+}
+
+/* ========== SECTIONS (BASE Styling) ========== */
+section {
+  margin: 30px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background: var(--background-card);
+  box-shadow: var(--shadow);
+}
+
+section h2 {
+  margin-bottom: 20px;  /* increased margin to separate H2 from content box */
+  color: #333;
+}
+
+/* ========== SECTIONS (Static Image Styling - for dashboard display of weather info) ========== */
+
+/* 1. General style for weather sections to use Flexbox */
+#weather-info, #search-result {
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+
+    padding: 0; 
+    background: none; 
+    box-shadow: none; 
+
+    border-radius: 0; 
+    min-height: 150px;
+    margin: 0; /* remove default margin */
+}
+
+.weather-content {
+    /* Ensure the content is visibly separated */
+    padding: 25px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* slightly stronger shadow */
+    
+    /* Layout properties */
+    flex-grow: 1; /* still allows it to take up space */
+    max-width: 60%; /* prevents the content box from getting too wide */
+    
+    /* Default Gradient (Current Location) */
+    background: linear-gradient(135deg, var(--pastel-gradient-start) 0%, var(--pastel-gradient-end) 100%);
+    color: var(--text-color-dark);
+}
+
+/* Override Gradient for Search City Section */
+#search-result .weather-content {
+    background: linear-gradient(135deg, var(--pastel-gradient-start-search) 0%, var(--pastel-gradient-end-search) 100%);
+}
+
+/* 2. Styling of generic container for the Static Images - ensures right alignment via Flexbox */
+.static-image-container {
+    width: 20rem;
+    height: 20rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 0 5px 5px;
+    flex-shrink: 0; /* prevents shrinking */  
+    /* NOTE: Since this is the LAST item in the flex container, it is automatically RIGHT-ALIGNED in space-between mode. */
+}
+
+/* 2.a Specific styles for the CURRENT LOCATION image (styling/shape) */
+.static-image-container.static-current {
+    border-radius: 50px; /* square/rectangular shape */
+    background-image: url('assets/bkg5.jpg'); 
+}
+
+/* 2.b Specific styles for the SEARCH CITY image (styling/shape) */
+.static-image-container.static-search {
+    border-radius: 50%; /* circular shape */
+    background-image: url('assets/bkg3.jpeg');
+}
+
+/* ========== FORECAST CARDS ========== */
+/* 1. STYLING THE MAIN SECTION CONTAINER */
+#forecast {
+  /* Inherits padding/margin/shadow from the general 'section' rule, but we 
+     remove the specific grid/centering attempts that were causing confusion. */
+  /* This ensures the H2 sits cleanly above the card row. */
+  padding: 20px; /* Use default section padding */
+  margin: 30px 0; /* Use default section margin */
+}
+
+
+/* 2. STYLING THE CARD WRAPPER TO BE A HORIZONTAL FLEXBOX */
+#forecast-cards {
+  /* --- LAYOUT CHANGES: Use Flexbox for a single row --- */
+  display: flex;
+  flex-wrap: nowrap; /* CRUCIAL: Prevents cards from wrapping */
+  
+  /* Adds space around and between cards */
+  gap: 25px; 
+  padding: 0 25px; /* Padding for the container to visually center the row */
+  
+  /* CRUCIAL: Ensures the entire row of cards is visible (horizontal scrolling) */
+  overflow-x: auto; 
+  
+  /* Center the row horizontally within the #forecast container */
+  justify-content: center; 
+  
+  /* Ensure the container doesn't have an unwanted background/shadow */
+  background: none; 
+  box-shadow: none; 
+}
+
+/* 3. STYLING THE INDIVIDUAL CARDS (The items inside #forecast-cards) */
+.forecast-card {
+  /* CRUCIAL: Prevents cards from shrinking when space is tight */
+  flex-shrink: 0; 
+  
+  /* Set a fixed width */
+  width: 180px; 
+  
+  /* Your desired styling and shadow effects */
+  background: #d4faf5; 
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+  
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ========== MAP ========== */
+#mapId {
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: var(--primary-color);
+  color: var(--text-color-light);
+}
+
+/* ========== DARK MODE Styling ========== */
+body.dark {
+  --text-color-dark: #eee;
+  --background-light-center: #370abe; /* darkest center */
+  --background-light-middle: #f7ec8a; /* darker middle */
+  --background-light-edge: #9f1503;   /* dark edge */
+  --background-card: #1e1e1e;
+  --background-card-secondary: #2a2a2a;
+  --shadow: none;
+  
+  --pastel-gradient-start: var(--dark-pastel-start);
+  --pastel-gradient-end: var(--dark-pastel-end);
+  --pastel-gradient-start-search: var(--dark-pastel-start);
+  --pastel-gradient-end-search: var(--dark-pastel-end);
+}
+
+/* Dark mode Styling for Toggle Button */
+body.dark #dark-mode-toggle {
+    background: #444;
+    color: var(--primary-color);
+}
+body.dark #dark-mode-toggle:hover {
+    background: #666;
+}
+
+/* Ensure the H2 color is updated in dark mode */
+body.dark section h2 {
+    color: #ddd;
+}
+
+/* Dark Mode Updates for Weather Sections */
+body.dark .weather-content {
+    color: #eee; /* light text on dark background */
+}
+
+/* Dark Mode Updates for Static Images */
+body.dark .static-image-container {
+    filter: brightness(0.8) contrast(1.2); 
+}
+
+/* Dark Mode Updates for Forecast Cards*/
+body.dark .forecast-card {
+  /*background: var(--background-card);  should resolve to the dark card color */
+  /* if you want a slightly different look for the forecast cards in dark mode: */
+  background: var(--background-card-secondary);
+}
+
+/* ========== RESPONSIVENESS ========== */
+@media (max-width: 768px) {
+  /* The main header is already column-based, which helps responsiveness. */
+  
+  /* Make controls stack if the screen is too small */
+  .header-controls {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+  }
+  
+  nav {
+    /* If links wrap, make them take full width */
+    width: 100%;
+    /* Stack links vertically on tiny screens */
+    flex-direction: column; 
+  }
+  
+  nav a {
+      text-align: center;
+  }
+  
+  #dark-mode-toggle {
+      width: 100%; /* Button takes full width when stacked */
+  }
+}
